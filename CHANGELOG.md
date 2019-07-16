@@ -1,10 +1,10 @@
-## Example changelog since v0.1.1 - 2019-06-21
+## Changelog since v0.0.1 - 2019-07-16
 
 ### Added
-* Added a specific feature here... ([#21](https://github.com/illumiolabs/illumiolabs/pull/21), [@illumiolabs](https://github.com/illumiolabs))
+* Initial version of Azure Function with support for visualizing NSG Flow logs using PCE Illumination Map.
 
 ### Fixed
-* Fix a specific bugs here... ([#23](https://github.com/illumiolabs/illumiolabs/pull/23), [@illumiolabs](https://github.com/illumiolabs))
+- Nothing.
 
 ### Removed
 - Nothing.
