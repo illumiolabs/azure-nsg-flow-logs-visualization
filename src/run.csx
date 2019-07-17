@@ -30,6 +30,18 @@ public static async Task Run(CloudBlockBlob myBlob, string subscriptionID, strin
         return;
     }
 
+    // NSG environment variables.
+    // nsgTrafficDecision can be all, allowed or denied. Empty string, no env
+    // variables or typo, defaults nsgTrafficDecision to allowed traffic being
+    // visualized.
+    string nsgTrafficDecision = getEnvironmentVariable("NSG_TRAFFIC_DECISION").ToLower();
+    if ( (nsgTrafficDecision.Length == 0) ||
+        !(nsgTrafficDecision == "all" ||
+          nsgTrafficDecision == "allowed" ||
+          nsgTrafficDecision == "denied")) {
+        nsgTrafficDecision = "allowed";
+    }
+
     string csvData = "";
     using (var stream = await myBlob.OpenReadAsync())
     using (var sr = new StreamReader(stream))
@@ -46,16 +58,7 @@ public static async Task Run(CloudBlockBlob myBlob, string subscriptionID, strin
                     foreach (var flowTuple in innerFlow.flowTuples)
                     {
                         var tuple = new NSGFlowLogTuple(flowTuple, version);
-                        // display only accepted flows for now.
-                        if (tuple.deviceAction == "A") {
-                            var temp = new StringBuilder();
-                            temp.Append(tuple.sourceAddress).Append(",");
-                            temp.Append(tuple.destinationAddress).Append(",");
-                            temp.Append(tuple.destinationPort).Append(",");
-                            temp.Append(tuple.transportProtocol == "U" ? "17" : "6");
-                            temp.Append(Environment.NewLine);
-                            csvData += temp.ToString();
-                        }
+                        csvData += getNSGTrafficData(tuple, nsgTrafficDecision);
                     }
                 }
             }
@@ -89,6 +92,34 @@ public static async Task Run(CloudBlockBlob myBlob, string subscriptionID, strin
 
     response.Close();
     log.LogInformation($"Uploaded flow to: {uri}");
+}
+
+static string getNSGTrafficData(NSGFlowLogTuple tuple, string nsgTrafficDecision) {
+    string data = "";
+
+    if (nsgTrafficDecision == "all") {
+        data += getTupleData(tuple);
+    } else if (nsgTrafficDecision == "denied") {
+        if (tuple.deviceAction == "D") {
+            data += getTupleData(tuple);
+        }
+    } else {
+        if (tuple.deviceAction == "A") {
+            data += getTupleData(tuple);
+        }    
+    }
+
+    return data;
+}
+
+static string getTupleData(NSGFlowLogTuple tuple) {
+    var temp = new StringBuilder();
+    temp.Append(tuple.sourceAddress).Append(",");
+    temp.Append(tuple.destinationAddress).Append(",");
+    temp.Append(tuple.destinationPort).Append(",");
+    temp.Append(tuple.transportProtocol == "U" ? "17" : "6");
+    temp.Append(Environment.NewLine);
+    return temp.ToString();
 }
 
 public static string getEnvironmentVariable(string name)
