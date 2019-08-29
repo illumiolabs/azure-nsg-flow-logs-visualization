@@ -13,6 +13,15 @@ The main goal here is to visualize Azure NSG Flow Logs on PCE Illumination Map.
 
 Detailed instructions on how to install, configure, and get the project running are mentioned in [INSTALL](INSTALL.md) document.
 
+## Support
+
+The Azure Function for Illuminating Azure NSG Flow Logs is released and distributed as open source
+software subject to the [LICENSE](LICENSE). Illumio has no obligation or responsibility related to
+the Azure Function for Illuminating Azure NSG Flow Logs with respect to support, maintenance,
+availability, security or otherwise. Please read the entire [LICENSE](LICENSE) for additional
+information regarding the permissions and limitations. You can engage with the author & contributors
+team and community on SLACK.
+
 ## Contributing
 
 Instructions on how to contribute:  [CONTRIBUTING](CONTRIBUTING.md).
