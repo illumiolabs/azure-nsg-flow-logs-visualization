@@ -47,10 +47,19 @@
        1. Now click configuration and configuration page will show up.
        1. Now follow the steps mentioned in __Application setting__ section on this page https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings#settings and set the following highlighted PCE and NSG variables from first section above:
             <img src="images/pce-env-variables.jpg" width="800">
-       1. Make sure the PCE_HOSTADDR is set as https://\<PCE-host\>:\<PCE-port\>/
-       1. For example, https://illumio-test-pce-1.illumio.com:8443/
-       1. The values for NSG_TRAFFIC_DECISION are __all__, __allowed__ or __denied__.
-       1. The default value for NSG_TRAFFIC_DECISION is __allowed__ if the variable is empty string, not set, or a typo.
+       1. List of PCE and NSG variables:
+           ```
+           NSG_TRAFFIC_DECISION
+           PCE_APITOKEN
+           PCE_APIUSER
+           PCE_HOSTADDR
+           PCE_ORG
+           ```
+       1. The values for NSG_TRAFFIC_DECISION are __all__, __allowed__ or __denied__. The default value for NSG_TRAFFIC_DECISION is __allowed__ if the variable is empty string, not set, or a typo.
+       1. PCE_APITOKEN example: beb62c646efb6fa7c7b3ed6dLie4yahKeegohNiekasuc516a7989675570982ac
+       1. PCE_APIUSER example: api_puheVahd3naeFungi
+       1. Make sure the PCE_HOSTADDR is set as https://\<PCE-host\>:\<PCE-port\>/ for example, https://illumio-test-pce-1.illumio.com:8443/
+       1. PCE_ORG example: 1
        1. Once the variables are set, we can proceed to next steps.
    1. Now click on the __BlobTrigger1__ function itself and an editor will open up with a single run() function in it.
    1. Remove the the code there and replace it with the one in the [src/run.csx](src/run.csx) file.
