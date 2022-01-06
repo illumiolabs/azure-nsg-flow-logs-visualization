@@ -3,6 +3,14 @@
 [![Slack](images/slack.svg)](http://slack.illumiolabs.com)
 [![License](images/license.svg)](LICENSE)
 
+## Status
+
+IMPORTANT: This repository is no longer under active maintenance. If you are
+interested in integrating an Illumio ASP with a cloud provider, please see Illumio
+CloudSecure(https://www.illumio.com/products/cloudsecure).
+
+
+
 The main goal here is to visualize Azure NSG Flow Logs on PCE Illumination Map.
 
 # Architecture Diagram
