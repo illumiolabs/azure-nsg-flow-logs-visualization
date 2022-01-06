@@ -1,14 +1,12 @@
-# Azure Function for Illuminating Azure NSG Flow Logs
-
-[![Slack](images/slack.svg)](http://slack.illumiolabs.com)
-[![License](images/license.svg)](LICENSE)
-
-## Status
+# Status
 
 IMPORTANT: This repository is no longer under active maintenance. If you are
 interested in securing your cloud environment please see [Illumio CloudSecure](https://www.illumio.com/products/cloudsecure).
 
+# Azure Function for Illuminating Azure NSG Flow Logs
 
+[![Slack](images/slack.svg)](http://slack.illumiolabs.com)
+[![License](images/license.svg)](LICENSE)
 
 The main goal here is to visualize Azure NSG Flow Logs on PCE Illumination Map.
 
